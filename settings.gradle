@@ -1,0 +1,3 @@
+include ':Currency API'
+include ':app'
+rootProject.name = "BTG Mobile Challenge"
