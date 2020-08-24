@@ -1,0 +1,80 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: "kotlin-kapt"
+
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        minSdkVersion 23
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0.0"
+        multiDexEnabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+def dependencyVersions = [
+        hamcrest:           "2.2",
+        junit:              "4.12",
+        kodein:             "7.0.0",
+        logginginterceptor: "4.8.1",
+        mockk:              "1.10.0",
+        retrofit2:          "2.9.0",
+        room:               "2.2.5",
+        rxkotlin:           "2.4.0",
+]
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    implementation 'androidx.core:core-ktx:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+
+    implementation "androidx.room:room-runtime:${dependencyVersions.room}"
+    implementation "androidx.room:room-ktx:${dependencyVersions.room}"
+    implementation "androidx.room:room-rxjava2:${dependencyVersions.room}"
+    implementation "org.kodein.di:kodein-di:${dependencyVersions.kodein}"
+    implementation "io.reactivex.rxjava2:rxkotlin:${dependencyVersions.rxkotlin}"
+    implementation "com.squareup.retrofit2:retrofit:${dependencyVersions.retrofit2}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${dependencyVersions.retrofit2}"
+    implementation "com.squareup.retrofit2:converter-gson:${dependencyVersions.retrofit2}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${dependencyVersions.logginginterceptor}"
+
+    testImplementation "junit:junit:${dependencyVersions.junit}"
+    testImplementation "androidx.room:room-testing:${dependencyVersions.room}"
+    testImplementation "org.kodein.di:kodein-di:${dependencyVersions.kodein}"
+    testImplementation "io.reactivex.rxjava2:rxkotlin:${dependencyVersions.rxkotlin}"
+    testImplementation "com.squareup.retrofit2:retrofit:${dependencyVersions.retrofit2}"
+    testImplementation "com.squareup.retrofit2:adapter-rxjava2:${dependencyVersions.retrofit2}"
+    testImplementation "com.squareup.retrofit2:converter-gson:${dependencyVersions.retrofit2}"
+    testImplementation "com.squareup.okhttp3:logging-interceptor:${dependencyVersions.logginginterceptor}"
+    testImplementation "org.hamcrest:hamcrest:${dependencyVersions.hamcrest}"
+    testImplementation "io.mockk:mockk:${dependencyVersions.mockk}"
+
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    kapt "androidx.room:room-compiler:${dependencyVersions.room}"
+}
