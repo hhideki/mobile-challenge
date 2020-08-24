@@ -5,6 +5,7 @@ import org.junit.runners.Suite
 
 @RunWith(Suite::class)
 @Suite.SuiteClasses(
-    CurrencyWebserviceRequestTest::class
+    CurrencyWebserviceRequestTest::class,
+    ConversionRateWebserviceRequestTest::class
 )
 class CurrencyApiTestSuite

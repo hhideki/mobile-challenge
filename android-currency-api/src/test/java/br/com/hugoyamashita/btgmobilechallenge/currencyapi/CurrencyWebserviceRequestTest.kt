@@ -28,7 +28,7 @@ class CurrencyWebserviceRequestTest {
         // Given
         val service = mockk<CurrencyLayerService>().apply {
             every { requestAvailableCurrencies() } returns Single.just(
-                CurrencyListResponse(false, "", "", noCurrencyMap)
+                CurrencyListResponse(false, "", "", mapOf())
             )
         }
         val api = CurrencyApi(service)
